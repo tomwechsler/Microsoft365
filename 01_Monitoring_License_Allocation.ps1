@@ -1,4 +1,4 @@
-﻿Set-Location c:\
+Set-Location c:\
 Clear-Host
 
 Install-Module MSOnline -AllowClobber -Force -Verbose
