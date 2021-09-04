@@ -1,42 +1,44 @@
-﻿#Install the Skype for Business Online PowerShell Module (https://www.microsoft.com/en-us/download/details.aspx?id=39366)
-
 Set-Location c:\
 Clear-Host
 
 #Install the teams module
 Install-Module MicrosoftTeams -AllowClobber -Force -Verbose
 
+#Install the MSOnline module
+Install-Module MSOnline -AllowClobber -Force -Verbose
+
 #Import the teams module
 Import-Module -Name MicrosoftTeams
 
-#Create cred's
-$Cred = Get-Credential
+#Credentials
+$cred = Get-Credential
 
-#Create a session
-$CSSession = New-CsOnlineSession -Credential $Cred
+#Connect to Teams
+Connect-MicrosoftTeams –Credential $cred
 
-#Import the session
-Import-PSSession -Session $CSSession -AllowClobber
-
-#Connect to Microsoft 365 (formerly Office365)
-Connect-MsolService -Credential $Cred
+#Connect to Microsoft 365
+Connect-MsolService –Credential $cred
 
 #Did it work
 Get-MsolUser
 
+#Did it work
+Get-Team
+
 #We need the ObjectId of a user
-Get-MsolUser -UserPrincipalName "jane.ford@tomwechsler.xyz" | Select-Object ObjectId
+Get-MsolUser -UserPrincipalName "tom@tomscloud.ch" | Select-Object ObjectId
 
 #Check the assigment for a user
-Get-CsUserPolicyAssignment -Identity 76ae4015-3774-4524-a534-c6b3e6816be5
+Get-CsUserPolicyAssignment -Identity ba36d788-31a5-4f72-9709-7d586056762c
 
 #Check all users for some policies
 Get-CsOnlineUser | Format-Table UserPrincipalName, TeamsMessagingPolicy, TeamsMeetingPolicy, TeamsAppSetupPolicy
 
+#The details of the policy
 Get-CsTeamsMessagingPolicy -Identity "Tom"
 
 #To grant a single user a Messaging Policy
-Grant-CsTeamsMessagingPolicy -Identity jane.ford@tomwechsler.xyz -PolicyName "Tom"
+Grant-CsTeamsMessagingPolicy -Identity fred.jonas@tomscloud.ch -PolicyName "Tom"
 
 #Search all users in the department "Administration"
 Get-CsOnlineUser -Filter {Department -eq 'Administration'} | Select UserPrincipalName
@@ -58,3 +60,6 @@ Get-CsOnlineUser -Filter {Department -eq 'Administration'} | Grant-CsTeamsMeetin
 
 #Other example
 Get-CsOnlineUser -Filter {Department -eq 'Administration'} | Grant-CsTeamsAppSetupPolicy -PolicyName $Null
+
+#Remove a policy from a user
+Grant-CsTeamsMessagingPolicy -Identity fred.jonas@tomscloud.ch -PolicyName $null
