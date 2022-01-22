@@ -1,2 +1,2 @@
 # Microsoft 365
-Manage Microsoft 365 with PowerShell
+Manage Microsoft 365 with PowerShell!
