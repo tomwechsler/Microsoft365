@@ -4,7 +4,7 @@ Clear-Host
 #We need the PowerShell module
 Install-Module MSOnline -AllowClobber -Force -Verbose
 
-#Connect to Microsoft 365 (formerly Office 365)
+#Connect to Microsoft 365
 Connect-MsolService
 
 #Did it work
