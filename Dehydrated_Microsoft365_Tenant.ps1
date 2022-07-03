@@ -4,6 +4,12 @@ Clear-Host
 #We need the exchange online modil
 Install-Module -Name ExchangeOnlineManagement -Verbose -AllowClobber -Force
 
+#Set the ExecutionPolicy
+Set-ExecutionPolicy -ExecutionPolicy Unrestricted
+
+#Import the module
+Import-Module -Name ExchangeOnlineManagement
+
 #Lets connect
 Connect-ExchangeOnline
 
