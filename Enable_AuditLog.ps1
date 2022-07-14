@@ -1,7 +1,7 @@
-﻿Set-Location C:\
+Set-Location C:\
 Clear-Host
 
-#We need the exchange online modil
+#We need the exchange online module
 Install-Module -Name ExchangeOnlineManagement -Verbose -AllowClobber -Force
 
 #Create a variable with credentials
