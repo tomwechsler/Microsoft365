@@ -4,11 +4,8 @@ Clear-Host
 #We need the exchange online module
 Install-Module -Name ExchangeOnlineManagement -Verbose -AllowClobber -Force
 
-#Create a variable with credentials
-$cred = get-credential
-
 #Lets connect
-Connect-ExchangeOnline –Credential $cred
+Connect-ExchangeOnline
 
 #Did it work?
 Get-Mailbox
