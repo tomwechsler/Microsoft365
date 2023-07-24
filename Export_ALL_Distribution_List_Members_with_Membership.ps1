@@ -1,4 +1,5 @@
-﻿Set-Location C:\
+#The first two lines set the location and clear the shell content.
+Set-Location C:\
 Clear-Host
 
 #We need the module (without the parameter for a specific version)
